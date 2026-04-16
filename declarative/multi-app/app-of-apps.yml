@@ -2,19 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-of-apps
-  namespace: argocd
+  namespace: argo
 spec:
-  project: default
+  project: systtekcloud-gitops
   source:
-    repoURL: http://165.22.209.118:3000/siddharth/gitops-argocd.git
+    repoURL: https://github.com/systtekcloud/gitops-argocd.git
     targetRevision: HEAD
     path: ./declarative/app-of-apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: argo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
-
